@@ -10,20 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    enum Buttons: String {
-        case zero = "0"
-        case one = "1"
-        case two = "2"
-        case three = "3"
-        case four = "4"
-        case five = "5"
-        case six = "6"
-        case seven = "7"
-        case eight = "8"
-        case nine = "9"
-        case score = "."
-    }
-    
     @IBOutlet weak var tfDisplay: UITextField!
     
     override func viewDidLoad() {
@@ -80,11 +66,28 @@ class ViewController: UIViewController {
         var counter = 0
         for (index, element) in value.enumerated() {
             counter = counter + 1
+            if element == "×" {
+                let element1 = Double(value[index-1])!
+                let element2 = Double(value[index+1])!
+                let result = element1 * element2
+                displayValue = String(result)
+            }
+            if element == "÷" {
+                let element1 = Double(value[index-1])!
+                let element2 = Double(value[index+1])!
+                let result = element1 / element2
+                displayValue = String(result)
+            }
             if element == "+" {
-                let add1 = Double(value[index-1])!
-                let add2 = Double(value[index+1])!
-                let result = add1 + add2
-                print(result)
+                let element1 = Double(value[index-1])!
+                let element2 = Double(value[index+1])!
+                let result = element1 + element2
+                displayValue = String(result)
+            }
+            if element == "-" {
+                let element1 = Double(value[index-1])!
+                let element2 = Double(value[index+1])!
+                let result = element1 - element2
                 displayValue = String(result)
             }
         }
