@@ -10,14 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    enum Operations: String {
-        case percent = "%"
-        case add = "+"
-        case subtract = "-"
-        case multiply = "×"
-        case divide = "÷"
-        case solve = "resolver"
-        case none = ""
+    enum Buttons: String {
+        case zero = "0"
+        case one = "1"
+        case two = "2"
+        case three = "3"
+        case four = "4"
+        case five = "5"
+        case six = "6"
+        case seven = "7"
+        case eight = "8"
+        case nine = "9"
+        case score = "."
     }
     
     @IBOutlet weak var tfDisplay: UITextField!
@@ -31,13 +35,28 @@ class ViewController: UIViewController {
             tfDisplay.text = displayValue
         }
     }
+    
+    var value: [String] = []
+    var numbers = ""
+    var result = "0"
 
-    @IBAction func btNumbers(_ sender: UIButton) {
-        if let number = sender.titleLabel!.text {
+    @IBAction func btButtons(_ sender: UIButton) {
+        if let element = sender.titleLabel!.text {
             if displayValue == "0"{
-                displayValue = number == "." ?  "0." : number
+                displayValue = element == "." ?  "0." : element
             } else {
-                displayValue = displayValue + number
+                displayValue = displayValue + element
+            }
+            switch element {
+            case "1", "2","3","4","5","6", "7","8","9","0",".":
+                numbers = numbers + element
+            case "RESOLVER":
+                value.append(numbers)
+                numbers = ""
+            default:
+                value.append(numbers)
+                numbers = ""
+                value.append(element)
             }
         }
     }
@@ -48,28 +67,27 @@ class ViewController: UIViewController {
         } else {
             displayValue = "0"
         }
+        value.removeLast()
     }
     
-    @IBAction func operations(_ sender: UIButton) {
-        if let op = sender.titleLabel!.text {
-            if displayValue == "0" {
-                displayValue = op
-            } else {
-                displayValue = displayValue + op
-            }
-        }
-        if let operation = Operations(rawValue: sender.titleLabel!.text!) {
-            if operation == .percent {
-                calculatePercent ()
-            }
-            if operation == .solve {
-                calculateSolve ()
-            }
-        }
-        
+    @IBAction func ac(_ sender: UIButton) {
+        displayValue = "0"
+        value.removeAll()
     }
     
-    func calculatePercent () {}
-    
-    func calculateSolve () {}
+    @IBAction func solve(_ sender: UIButton) {
+        print(value)
+        var counter = 0
+        for (index, element) in value.enumerated() {
+            counter = counter + 1
+            if element == "+" {
+                let add1 = Double(value[index-1])!
+                let add2 = Double(value[index+1])!
+                let result = add1 + add2
+                print(result)
+                displayValue = String(result)
+            }
+        }
+        value.removeAll()
+    }
 }
