@@ -70,27 +70,61 @@ class ViewController: UIViewController {
                 let element1 = Double(value[index-1])!
                 let element2 = Double(value[index+1])!
                 let result = element1 * element2
-                displayValue = String(result)
+                value[index-1] = String(result)
+                print(value)
+                value.remove(at: index)
+                print(value)
+                value.remove(at: index)
+                print(value)
+                counter = 0
             }
+        }
+        for (index, element) in value.enumerated() {
+            counter = counter + 1
             if element == "÷" {
                 let element1 = Double(value[index-1])!
                 let element2 = Double(value[index+1])!
                 let result = element1 / element2
-                displayValue = String(result)
+                value[index-1] = String(result)
+                print(value)
+                value.remove(at: index)
+                print(value)
+                value.remove(at: index)
+                print(value)
+                counter = 0
             }
+        }
+        for (index, element) in value.enumerated() {
+            counter = counter + 1
             if element == "+" {
                 let element1 = Double(value[index-1])!
                 let element2 = Double(value[index+1])!
                 let result = element1 + element2
-                displayValue = String(result)
+                value[index-1] = String(result)
+                print(value)
+                value.remove(at: index)
+                print(value)
+                value.remove(at: index)
+                print(value)
+                counter = 0
             }
+        }
+        for (index, element) in value.enumerated() {
+            counter = counter + 1
             if element == "-" {
                 let element1 = Double(value[index-1])!
                 let element2 = Double(value[index+1])!
                 let result = element1 - element2
-                displayValue = String(result)
+                value[index-1] = String(result)
+                print(value)
+                value.remove(at: index)
+                print(value)
+                value.remove(at: index)
+                print(value)
+                counter = 0
             }
         }
+        displayValue = value[0]
         value.removeAll()
     }
 }
