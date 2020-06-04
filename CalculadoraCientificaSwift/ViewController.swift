@@ -62,66 +62,88 @@ class ViewController: UIViewController {
     }
     
     @IBAction func solve(_ sender: UIButton) {
-        print(value)
-        var counter = 0
-        for (index, element) in value.enumerated() {
-            counter = counter + 1
-            if element == "×" {
-                let element1 = Double(value[index-1])!
-                let element2 = Double(value[index+1])!
-                let result = element1 * element2
-                value[index-1] = String(result)
-                print(value)
-                value.remove(at: index)
-                print(value)
-                value.remove(at: index)
-                print(value)
-                counter = 0
+        
+        while value.count > 1 {
+            print(value)
+            while value.contains("×") {
+                for (index, element) in value.enumerated() {
+                    print(index)
+                    if element == "×" {
+                        let element1 = Double(value[index-1])!
+                        print(element1)
+                        let element2 = Double(value[index+1])!
+                        print(element2)
+                        let result = element1 * element2
+                        print(result)
+                        value[index-1] = String(result)
+                        print(value)
+                        value.remove(at: index)
+                        print(value)
+                        value.remove(at: index)
+                        print(value)
+                        break
+                    }
+                }
             }
-        }
-        for (index, element) in value.enumerated() {
-            counter = counter + 1
-            if element == "÷" {
-                let element1 = Double(value[index-1])!
-                let element2 = Double(value[index+1])!
-                let result = element1 / element2
-                value[index-1] = String(result)
-                print(value)
-                value.remove(at: index)
-                print(value)
-                value.remove(at: index)
-                print(value)
-                counter = 0
+            while value.contains("÷") {
+                for (index, element) in value.enumerated() {
+                    print(index)
+                    if element == "÷" {
+                        let element1 = Double(value[index-1])!
+                        print(element1)
+                        let element2 = Double(value[index+1])!
+                        print(element2)
+                        let result = element1 / element2
+                        print(result)
+                        value[index-1] = String(result)
+                        print(value)
+                        value.remove(at: index)
+                        print(value)
+                        value.remove(at: index)
+                        print(value)
+                        break
+                    }
+                }
             }
-        }
-        for (index, element) in value.enumerated() {
-            counter = counter + 1
-            if element == "+" {
-                let element1 = Double(value[index-1])!
-                let element2 = Double(value[index+1])!
-                let result = element1 + element2
-                value[index-1] = String(result)
-                print(value)
-                value.remove(at: index)
-                print(value)
-                value.remove(at: index)
-                print(value)
-                counter = 0
+            while value.contains("+") {
+                for (index, element) in value.enumerated() {
+                    print(index)
+                    if element == "+" {
+                        let element1 = Double(value[index-1])!
+                        print(element1)
+                        let element2 = Double(value[index+1])!
+                        print(element2)
+                        let result = element1 + element2
+                        print(result)
+                        value[index-1] = String(result)
+                        print(value)
+                        value.remove(at: index)
+                        print(value)
+                        value.remove(at: index)
+                        print(value)
+                        break
+                    }
+                }
             }
-        }
-        for (index, element) in value.enumerated() {
-            counter = counter + 1
-            if element == "-" {
-                let element1 = Double(value[index-1])!
-                let element2 = Double(value[index+1])!
-                let result = element1 - element2
-                value[index-1] = String(result)
-                print(value)
-                value.remove(at: index)
-                print(value)
-                value.remove(at: index)
-                print(value)
-                counter = 0
+            while value.contains("-") {
+                for (index, element) in value.enumerated() {
+                    print(index)
+                    if element == "-" {
+                        let element1 = Double(value[index-1])!
+                        print(element1)
+                        let element2 = Double(value[index+1])!
+                        print(element2)
+                        let result = element1 - element2
+                        print(result)
+                        value[index-1] = String(result)
+                        print(value)
+                        value.remove(at: index)
+                        print(value)
+                        value.remove(at: index)
+                        print(value)
+                        break
+                    }
+                }
             }
         }
         displayValue = value[0]
